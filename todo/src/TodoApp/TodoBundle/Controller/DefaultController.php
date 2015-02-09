@@ -42,7 +42,9 @@ class DefaultController extends Controller
         $task = new Task();
         $task->setTitle($title);
         $task->setCategory($category);
-        $task->setDueDate(date("l (j F)", strtotime($dueDate)));
+        if ($dueDate != "") {
+            $task->setDueDate(date("l (j F)", strtotime($dueDate)));
+        }
 
         return $task;
     }
@@ -146,17 +148,13 @@ class DefaultController extends Controller
         $title   = $request->request->get('task_title');
         $dueDate = $request->request->get('task_date');
 
-        if (!isset($dueDate)) {
-            $dueDate = null;
-        }
 
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $category       = $em->getRepository('TodoBundle:Category')->findOneByUrl($category_url);
+        $category       = $this->getRepository('TodoBundle:Category')->findOneByUrl($category_url);
         $categoryTitle  = $category->getTitle();
 
         $task = $this->newTask($title, $category, $dueDate);
 
+        $em = $this->getDoctrine()->getEntityManager();
         $em->persist($task);
         $em->flush();
 

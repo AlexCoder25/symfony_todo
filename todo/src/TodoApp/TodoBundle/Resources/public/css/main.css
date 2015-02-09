@@ -7739,7 +7739,7 @@ html, body {
   .categories-col .collection {
     margin-top: 30px; }
   .categories-col a.new-category {
-    margin: 15px 0 0;
+    margin: 15px 0 0 -2px;
     padding: 0 24px; }
   .categories-col .badge.new:after {
     content: ""; }
@@ -7756,6 +7756,22 @@ html, body {
   .tasks-col .title {
     text-align: center;
     color: #BBCDD7; }
+
+.date {
+  float: right;
+  opacity: 0.55; }
+
+.complete-task-block {
+  float: left; }
+
+.complete-task {
+  padding-left: 0;
+  padding-right: 20px;
+  opacity: 0.6;
+  float: left; }
+  .complete-task:hover {
+    opacity: 1;
+    cursor: pointer; }
 
 .full-link {
   position: absolute;

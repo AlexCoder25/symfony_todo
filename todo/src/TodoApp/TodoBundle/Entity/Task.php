@@ -39,28 +39,31 @@ class Task
      * @var \DateTime
      *
      * @ORM\Column(name="creating_date", type="datetime")
+     * @Validate\NotNull()
+     * @Validate\NotBlank()
      */
     private $creatingDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="due_date", type="string")
+     * @ORM\Column(name="due_date", type="string", nullable=true)
      */
-    private $dueDate;
+    private $dueDate = null;
 
     /**
      * @var integer
      */
-    public $categoryId;
+    private $categoryId;
 
     /**
      * @var Category
      *
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="tasks")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @Validate\NotNull()
      */
-    public $category;
+    private $category;
 
 
     /*
@@ -160,10 +163,8 @@ class Task
      * @param string $date
      * @return Task
      */
-    public function setDueDate($date)
+    public function setDueDate($date = null)
     {
-        //$this->dueDate = \DateTime::createFromFormat("l (j F)", $date);
-        //$this->dueDate = date("l (j F)", strtotime($date));
         $this->dueDate = $date;
 
         return $this;

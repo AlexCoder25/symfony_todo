@@ -7,7 +7,7 @@
         </div>
         <ul class="collection">
             {% for task in tasks %}
-                <li class="collection-item"><div>{{ task.title }} <span class="date">{{ task.dueDate }}<a href="{{ path('remove_task', {'task_id': task.id, 'category_url': task.categoryUrl }) }}" class="secondary-content"><i class="secondary-content mdi-navigation-check small"></i></a></div></li>
+                <li class="collection-item"><div>{{ task.title }} <span class="date">{% if task.dueDate is defined %}{{ task.dueDate }}{% endif %}</span><a href="{{ path('remove_task', {'task_id': task.id, 'category_url': task.categoryUrl }) }}" class="secondary-content complete-task-block"><i class="secondary-content mdi-navigation-check small complete-task"></i></a></div></li>
             {% endfor %}
         </ul>
         {% if category_url is defined %}

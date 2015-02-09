@@ -2,8 +2,8 @@
 <div class="col s3 categories-col">
     <a href="{{ path('show_all') }}"><h3 class="title">Categories</h3></a>
     <ul class="collection">
-        {% for category in categories if categories %}
-            <a class="collection-item" href="{{ path('show_category', {'category_url': category.url}) }}">
+        {% for category in categories %}
+            <a class="collection-item {% if category_url is defined and category_url == category.url %}{{ "active" }}{% endif %}" href="{{ path('show_category', {'category_url': category.url}) }}">
                 {{ category.title }}
                 <span class="secondary-content" onclick="window.location.href='{{ path('remove_category', { 'category_url': category.url }) }}'; return false;"><i class="secondary-content mdi-content-clear remove-category-button pink-text lighten-1"></i></span>
                 {% if category.tasksTotal != "0" %}
