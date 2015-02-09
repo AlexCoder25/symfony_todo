@@ -1,0 +1,30 @@
+{# Left side with all categories #}
+<div class="col s3 categories-col">
+    <a href="{{ path('show_all') }}"><h3 class="title">Categories</h3></a>
+    <ul class="collection">
+        {% for category in categories if categories %}
+            <a class="collection-item" href="{{ path('show_category', {'category_url': category.url}) }}">
+                {{ category.title }}
+                <span class="secondary-content" onclick="window.location.href='{{ path('remove_category', { 'category_url': category.url }) }}'; return false;"><i class="secondary-content mdi-content-clear remove-category-button pink-text lighten-1"></i></span>
+                {% if category.tasksTotal != "0" %}
+                    <span class="badge new">{{ category.tasksTotal }}</span>
+                {% endif %}
+            </a>
+
+        {% endfor %}
+    </ul>
+    <div class="row new-category-row">
+        <form action="" id="formNewCategory" method="POST">
+            <div class="input-field col s9">
+                <input type="text" id="category_title" name="category_title"/>
+                <label for="category_title">New category title</label>
+            </div>
+            <div class="col s3">
+                <label for="new-category">
+                    <a class="waves-effect waves-light btn teal accent-4 new-category">New</a>
+                </label>
+            </div>
+            <input type="submit" id="new-category" class="hide"/>
+        </form>
+    </div>
+</div>

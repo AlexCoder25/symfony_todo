@@ -1,0 +1,17 @@
+{# Main container with chosen tasks list #}
+<div class="row">
+    <div class="col s8 offset-s2 tasks-col">
+        <div class="section">
+            <h3>{{ category_title }}</h3>
+            <p>Total tasks: {{ tasks|length }}</p>
+        </div>
+        <ul class="collection">
+            {% for task in tasks %}
+                <li class="collection-item"><div>{{ task.title }} <span class="date">{{ task.dueDate }}<a href="{{ path('remove_task', {'task_id': task.id, 'category_url': task.categoryUrl }) }}" class="secondary-content"><i class="secondary-content mdi-navigation-check small"></i></a></div></li>
+            {% endfor %}
+        </ul>
+        {% if category_url is defined %}
+            {% include '@Todo/newTaskForm.html.twig' %}
+        {% endif %}
+    </div>
+</div>

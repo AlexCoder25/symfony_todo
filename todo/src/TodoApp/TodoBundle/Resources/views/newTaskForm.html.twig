@@ -1,0 +1,13 @@
+<form class="input-field" action="{{ path('add_task', {'category_url': category_url }) }}" id="formNewTask" method="POST">
+    <div class="input-field col s10">
+        <i class="mdi-editor-mode-edit prefix"></i>
+        <input type="text" name="task_title" id="icon_prefix2"/>
+        <label for="icon_prefix2">Create new task</label>
+    </div>
+    <div class="input-field col s2">
+        <i class="mdi-device-access-time prefix"></i>
+        <input type="date" name="task_date" class="datepicker" id="icon_prefix3" placeholder="Set date">
+        <label for="icon_prefix3"></label>
+    </div>
+    <input type="submit" class="hide"/>
+</form>

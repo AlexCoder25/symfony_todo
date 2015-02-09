@@ -1,0 +1,27 @@
+show_all:
+    path:     /
+    defaults: { _controller: TodoBundle:Default:index }
+    methods: 'GET'
+
+add_category:
+    path:     /
+    defaults: { _controller: TodoBundle:Default:addCategory }
+    methods: 'POST'
+
+show_category:
+    path:     /category/{category_url}
+    defaults: { _controller: TodoBundle:Default:indexTask }
+    methods: 'GET'
+
+remove_category:
+    path:     /category/{category_url}/delete
+    defaults: { _controller: TodoBundle:Default:deleteCategory }
+
+add_task:
+    path:     /category/{category_url}
+    defaults: { _controller: TodoBundle:Default:addTask }
+    methods:  'POST'
+
+remove_task:
+    path:     /category/{category_url}/delete/{task_id}
+    defaults: { _controller: TodoBundle:Default:deleteTask }

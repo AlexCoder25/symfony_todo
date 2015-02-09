@@ -1,0 +1,59 @@
+@import "../sass/materialize"
+
+html, body
+  height: 100%
+  margin: 0
+  padding: 0
+
+#notifications
+  display: none
+  visibility: hidden
+
+.main-layout
+  background-color: #eeeeee
+
+.categories-col
+  height: 100vh // Fuck you, IE8
+  padding-top: 60px
+  background-color: #FCFCFC
+  .title
+    text-align: center
+    color: #BBCDD7
+  .collection
+    margin-top: 30px
+  a.new-category
+    margin: 15px 0 0 -2px
+    padding: 0 24px
+  .badge.new:after
+    content: ''
+  .remove-category-button
+    font-size: 20px
+    margin-left: 20px
+    opacity: .15
+    &:hover
+      opacity: 1
+      cursor: pointer
+
+.tasks-col
+  padding-top: 60px
+  .title
+    text-align: center
+    color: #BBCDD7
+
+
+.full-link
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+
+.hide
+  display: none
+
+.formDeleteCategory
+  display: block
+
+.tasks-col
+  height: 100vh
+  background-color: #eeeeee

@@ -1,0 +1,19 @@
+{% extends "@Todo/layout.html.twig" %}
+
+{% block body %}
+
+    {# Notification block #}
+    <div id="notifications">{% for flashMessage in app.session.flashbag.get('notification') %}{{ flashMessage }}{% endfor %}</div>
+
+    {# Main layout #}
+    <div class="row main-layout">
+
+        {# Left container with categories #}
+        {% include('@Todo/categories.html.twig') %}
+        {# Container with all todo tasks #}
+        <div class="col s9 tasks-col">
+            {% include('@Todo/tasks.html.twig') %}
+        </div>
+    </div>
+
+{% endblock %}

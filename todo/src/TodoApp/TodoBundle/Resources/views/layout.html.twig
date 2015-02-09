@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% stylesheets "@TodoBundle/Resources/public/css/*.css" filter="cssrewrite"%}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+</head>
+<body>
+
+{%  block body %}{% endblock %}
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="{{ asset('bundles/todo/js/bin/materialize.min.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/waves.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/forms.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/toasts.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/dropdown.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/cards.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/collapsible.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/forms.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/hammer.min.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/materialbox.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/velocity.min.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/date_picker/picker.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/date_picker/picker.date.js') }}"></script>
+<script src="{{ asset('bundles/todo/js/app.js') }}"></script>
+</body>
+</html>
