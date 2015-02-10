@@ -47,7 +47,7 @@ class Category
     /**
      * @var Task
      *
-     * @ORM\OneToMany(targetEntity="TodoApp\TodoBundle\Entity\Task", mappedBy="category", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="TodoApp\TodoBundle\Entity\Task", mappedBy="category", cascade={"persist", "remove"})
      */
     public $tasks;
 

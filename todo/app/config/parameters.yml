@@ -12,3 +12,4 @@ parameters:
     mailer_password: null
     locale: en
     secret: dd74acf78cc155ae26a51e766fd7beb62c381e4a
+
