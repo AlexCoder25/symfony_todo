@@ -3,6 +3,7 @@
 namespace TodoApp\TodoBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Validate;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
@@ -11,6 +12,7 @@ use Cocur\Slugify\Slugify;
 /**
  * @ORM\Entity
  * @ORM\Table(name="category")
+ * @UniqueEntity(fields={"title"}, message="This title is already in use")
  */
 class Category
 {
@@ -32,7 +34,7 @@ class Category
      * @var string
      *
      * @ORM\Column(name="title", type="string")
-     * @Validate\NotBlank()
+     * @Validate\NotBlank(message="Your category has no title")
      * @Validate\NotNull()
      */
     private $title;

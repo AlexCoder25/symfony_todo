@@ -4,6 +4,7 @@
 
     {# Notification block #}
     <div id="notifications">{% for flashMessage in app.session.flashbag.get('notification') %}{{ flashMessage }}{% endfor %}</div>
+    <div id="errors">{% for flashMessage in app.session.flashbag.get('errors') %}{{ flashMessage }}{% endfor %}</div>
 
     {# Main layout #}
     <div class="row main-layout">

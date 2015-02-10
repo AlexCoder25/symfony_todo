@@ -14,11 +14,22 @@ class DefaultController extends Controller
     /**
      * @param string $message
      */
-    private function notify($message)
+    private function notify($notification, $session, $message)
     {
-        $session = new Session();
-        $session->start();
-        $session->getFlashBag()->add('notification', $message);
+        $session->getFlashBag()->add($notification, $message);
+    }
+
+    private function validate($entity)
+    {
+        $validator = $this->get('validator');
+        $errors = $validator->validate($entity);
+
+        if (count($errors) > 0) {
+            $errors = explode(':', (string) $errors);
+            return $errors[1];
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -90,15 +101,24 @@ class DefaultController extends Controller
      */
     public function addCategoryAction(Request $request)
     {
-        $title = $request->request->get('category_title');
+        $title = trim($request->request->get('category_title'));
 
         $category = $this->newCategory($title);
+
+        $session = new Session();
+        $session->start();
+
+        $errors = $this->validate($category);
+        if ($errors != false) {
+            $this->notify('errors', $session, $errors);
+            return $this->forward('TodoBundle:Default:index');
+        }
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($category);
         $em->flush();
 
-        $this->notify("Created category '".$category->getTitle()."'");
+        $this->notify('notification', $session, "Created category '".$category->getTitle()."'");
 
         return $this->forward('TodoBundle:Default:index');
     }
@@ -115,7 +135,10 @@ class DefaultController extends Controller
         $em->remove($category);
         $em->flush();
 
-        $this->notify('Removed category "'.$category->getTitle().'"');
+        $session = new Session();
+        $session->start();
+
+        $this->notify('notification', $session, 'Removed category "'.$category->getTitle().'"');
 
         return $this->redirect($this->generateUrl('show_all'));
     }
@@ -145,7 +168,7 @@ class DefaultController extends Controller
      */
     public function addTaskAction($category_url, Request $request)
     {
-        $title   = $request->request->get('task_title');
+        $title   = trim($request->request->get('task_title'));
         $dueDate = $request->request->get('task_date');
 
 
@@ -154,11 +177,20 @@ class DefaultController extends Controller
 
         $task = $this->newTask($title, $category, $dueDate);
 
+        $session = new Session();
+        $session->start();
+
+        $errors = $this->validate($task);
+        if ($errors != false) {
+            $this->notify('errors', $session, $errors);
+            return $this->forward('TodoBundle:Default:index');
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($task);
         $em->flush();
 
-        $this->notify('New task created in "'.$categoryTitle.'"');
+        $this->notify('notification', $session, 'New task created in "'.$categoryTitle.'"');
 
         return $this->forward('TodoBundle:Default:indexTask', array(
             'category_url' => $category_url
@@ -179,7 +211,10 @@ class DefaultController extends Controller
         $em->remove($task);
         $em->flush();
 
-        $this->notify('Completed task!');
+        $session = new Session();
+        $session->start();
+
+        $this->notify('notification', $session, 'Completed task!');
 
         return $this->redirect($this->generateUrl('show_category', array(
             'category_url' => $category_url

@@ -5,6 +5,10 @@ $(document).ready(function() {
     if (notification.text().length > 0) {
         toast(notification.html(), 6000, 'green accent-3 black-text');
     }
+    var errors = $('#errors');
+    if (errors.text().length > 0) {
+        toast(errors.html(), 6000, 'red accent-3 black-text');
+    }
 
     $('.dropdown-activator').dropdown({
             inDuration: 300,

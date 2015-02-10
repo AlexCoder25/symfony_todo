@@ -30,7 +30,7 @@ class Task
      * @var string
      *
      * @ORM\Column(name="title", type="string")
-     * @Validate\NotBlank()
+     * @Validate\NotBlank(message="Your task has no title")
      * @Validate\NotNull()
      */
     private $title;

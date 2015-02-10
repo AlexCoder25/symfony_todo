@@ -7722,7 +7722,7 @@ html, body {
   margin: 0;
   padding: 0; }
 
-#notifications {
+#notifications, #errors {
   display: none;
   visibility: hidden; }
 

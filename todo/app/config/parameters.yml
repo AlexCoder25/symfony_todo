@@ -13,3 +13,17 @@ parameters:
     locale: en
     secret: dd74acf78cc155ae26a51e766fd7beb62c381e4a
 
+#
+#parameters:
+#    database_driver: pdo_pgsql
+#    database_host: ec2-54-204-40-96.compute-1.amazonaws.com
+#    database_port: '5432'
+#    database_name: dd9q2qs6ma49tt
+#    database_user: ylubohmwalhxri
+#    database_password: 559UHdFSYHDhm24QlVFtQ8aZQM
+#    mailer_transport: smtp
+#    mailer_host: 127.0.0.1
+#    mailer_user: null
+#    mailer_password: null
+#    locale: en
+#    secret: dd74acf78cc155ae26a51e766fd7beb62c381e4a
